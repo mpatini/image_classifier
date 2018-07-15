@@ -5,6 +5,9 @@ from torchvision import datasets, transforms, models
 from PIL import Image
 import numpy as np
 
+__all__ = [group_transform, process_image, imshow]
+
+
 def group_transform(train=True, test=True):
     """
     Defines image transforms for training and testing.

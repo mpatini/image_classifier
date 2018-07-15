@@ -3,6 +3,8 @@ import json
 import torch
 from torchvision import datasets, transforms, models
 
+__all__ = [load_dir, dataloader, labels]
+
 
 def load_dir(path):
     """
