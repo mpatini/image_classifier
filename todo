@@ -1,10 +1,15 @@
-dataload -> train/predict
+Module:
+lib
+
+submodules:
+lib.dataload -> train/predict
     __all__ = [load_dir, dataloader, labels]
-improc -> train/predict
+lib.improc -> train/predict
     __all__ = [group_transform, process_image, imshow]
 
-deeplearn -> train
-checkpoint -> train/predict
-infer -> predict
+lib.deeplearn -> train
+    __all__ = [init_model, classifier, train_deep, validation, test_network]
 
-folder -- lib
+lib.checkpoint -> train/predict
+lib.infer -> predict
+
