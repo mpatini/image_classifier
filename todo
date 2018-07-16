@@ -15,4 +15,5 @@ lib.checkpoint -> train/predict
     __all__ = [save_checkpoint, load_checkpoint]
 
 lib.infer -> predict
+    __all__ = [predict, plot_probs, output]
 

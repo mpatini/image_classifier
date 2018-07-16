@@ -160,6 +160,9 @@ def test_network(model, test_loader, criterion, device='cpu'):
         ps = torch.exp(output)
         equality = (labels.data == ps.max(dim=1)[1])
         accuracy += equality.type(torch.FloatTensor).mean()
+
+    test_loss /= len(test_loader)
+    accuracy /= len(test_loader)
     
     return test_loss, accuracy
 
