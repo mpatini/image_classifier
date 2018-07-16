@@ -8,8 +8,11 @@ lib.improc -> train/predict
     __all__ = [group_transform, process_image, imshow]
 
 lib.deeplearn -> train
-    __all__ = [init_model, classifier, train_deep, validation, test_network]
+    __all__ = [init_model, classifier, train_deep,
+               validation, test_network]
 
 lib.checkpoint -> train/predict
+    __all__ = [save_checkpoint, load_checkpoint]
+
 lib.infer -> predict
 

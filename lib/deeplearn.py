@@ -5,16 +5,22 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 from collections import OrderedDict
 
+__all__ = [init_model, classifier, train_deep,
+               validation, test_network]
+
 # TODO define two arch's
-def init_model(arch, units=(500,102)):
+def init_model(arch, train_data, load=False, units=(500,102)):
     """
     Initializes a pytorch pretrained deep learning model
     Input: 1 of 2 architectures as a String, tuple ->
     (int, int) number of desired units for one
-    hidden layer and the output layer
+    hidden layer and the output layer, train_data from which
+    to init the models label to idx dict
     Output: model
     """
     model = models.densenet121(pretrained=True)
+    model.class_to_idx = train_data.class_to_idx
+    model.idx_to_class = {v: k for k, v in model.class_to_idx.items()}
 
     # Freeze parameters so no backprop
     for param in model.parameters():
@@ -43,7 +49,8 @@ def classifier(arch, units):
                             ]))
     return classifier
 
-def train_deep(model, train_loader, valid_loader, criterion, lr=0.001, epochs=3, device='cpu'):
+def train_deep(model, train_loader, valid_loader, criterion,
+               lr=0.001, epochs=3, device='cpu'):
     """
     Define deep learning model training
     Input: initialized deep learning model,
