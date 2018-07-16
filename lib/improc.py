@@ -8,7 +8,7 @@ import numpy as np
 __all__ = [group_transform, process_image, imshow]
 
 
-def group_transform(train=True, test=True):
+def group_transform():
     """
     Defines image transforms for training and testing.
     Output: tuple -> train_transforms, test_transforms

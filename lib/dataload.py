@@ -3,7 +3,7 @@ import json
 import torch
 from torchvision import datasets, transforms, models
 
-__all__ = [load_dir, dataloader, labels]
+__all__ = [load_dir, dataloader, write_labels]
 
 
 def load_dir(path):
@@ -17,15 +17,17 @@ def load_dir(path):
     test_dir = path + '/test'
     return train_dir, valid_dir, test_dir
 
-def dataloader(train_dir, valid_dir, test_dir, transforms):
+def dataloader(dir, transforms):
     """
     Loads image data from directories
-    Input: Three dirs train, valid, and test, and a tuple -> 
+    Input: Three dirs train, valid, and test as a tuple, and a tuple -> 
     (train, test) transforms
     Output: Three dataloaders, trainloader, validloader testloader
     Example of usage:
         image, label = next(iter(train_loader))
     """
+
+    train_dir, valid_dir, test_dir = dir
 
     # Load the data
     train_data = datasets.ImageFolder(train_dir, transform=transforms[0])
@@ -39,7 +41,7 @@ def dataloader(train_dir, valid_dir, test_dir, transforms):
 
     return train_loader, valid_loader, test_loader
 
-def labels(path):
+def write_labels(path):
     """
     Loads categorical labels for image data from json file
     Input: path to json file
