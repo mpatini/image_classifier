@@ -29,17 +29,19 @@ def main():
 
     # Create dataloaders
     dirs = load_dir(in_args.dir)
-    train_loader, valid_loader, test_loader = dataloader(dirs, trans)
+    train_data, train_loader, valid_loader, test_loader = dataloader(dirs, trans)
     
     # Import label mapping
     labels = write_labels(in_args.labels)
 
     # Initialize model
-    
+    model = init_model(in_args.arch, train_data, in_args.units)
 
     # Define global criterion and optimizer
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.classifier.parameters(), lr=in_args.lr)
+
+    # Train model
 
 
 

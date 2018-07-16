@@ -8,7 +8,7 @@ from collections import OrderedDict
 __all__ = [init_model, classifier, train_deep,
                validation, test_network]
 
-def init_model(arch, train_data, load=False, units=(500,102)):
+def init_model(arch, train_data, units):
     """
     Initializes a pytorch pretrained deep learning model
     Input: 1 of 2 architectures as a String, tuple ->

@@ -39,7 +39,7 @@ def dataloader(dir, transforms):
     valid_loader = torch.utils.data.DataLoader(valid_data, batch_size=64, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_data, batch_size=32, shuffle=True)
 
-    return train_loader, valid_loader, test_loader
+    return train_data, train_loader, valid_loader, test_loader
 
 def write_labels(path):
     """
