@@ -18,8 +18,7 @@ def save_checkpoint(model, file_name):
 
     torch.save(checkpoint, file_name)
 
-# TODO Define two behaviors for two model architectures
-def load_checkpoint(filepath, device='cpu'):
+def load_checkpoint(filepath, arch, device='cpu'):
     """
     Takes an initialized model and inloads previous checkpoint
     Input: model, filepath to checkpoint saved data, device
@@ -27,7 +26,10 @@ def load_checkpoint(filepath, device='cpu'):
     Output: returns presaved model
     """
     # Load model and checkpoint
-    model = models.densenet121(pretrained=True)
+    if arch == 'densenet':
+        model = models.densenet121(pretrained=True)
+    elif arch == 'alexnet':
+        model = models.alexnet(pretrained=True)
     if device == 'cuda':
         model.to('cuda')
     checkpoint = torch.load(filepath)

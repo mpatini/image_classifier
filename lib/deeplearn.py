@@ -8,7 +8,6 @@ from collections import OrderedDict
 __all__ = [init_model, classifier, train_deep,
                validation, test_network]
 
-# TODO define two arch's
 def init_model(arch, train_data, load=False, units=(500,102)):
     """
     Initializes a pytorch pretrained deep learning model
@@ -18,7 +17,11 @@ def init_model(arch, train_data, load=False, units=(500,102)):
     to init the models label to idx dict
     Output: model
     """
-    model = models.densenet121(pretrained=True)
+    # Load model and checkpoint
+    if arch == 'densenet':
+        model = models.densenet121(pretrained=True)
+    elif arch == 'alexnet':
+        model = models.alexnet(pretrained=True)
     model.class_to_idx = train_data.class_to_idx
     model.idx_to_class = {v: k for k, v in model.class_to_idx.items()}
 
@@ -39,10 +42,13 @@ def classifier(arch, units):
     (int, int) number of desired units for one
     hidden layer and the output layer
     Output: classifier as an ordered dict
-
     """
+    if arch == 'densenet':
+        input_size = 1024
+    elif arch == 'alexnet':
+        input_size = 9216
     classifier = nn.Sequential(OrderedDict([
-                            ('fc1', nn.Linear(1024, units[0])),
+                            ('fc1', nn.Linear(input_size, units[0])),
                             ('relu1', nn.ReLU()),
                             ('fc2', nn.Linear(units[0], units[1])),
                             ('output', nn.LogSoftmax(dim=1))
