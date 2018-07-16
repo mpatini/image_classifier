@@ -17,3 +17,6 @@ lib.checkpoint -> train/predict
 lib.infer -> predict
     __all__ = [predict, plot_probs, output]
 
+lib.args -> predict/train
+    __all__ = [get_args_train, get_args_predict]
+
