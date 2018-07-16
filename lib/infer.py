@@ -11,7 +11,7 @@ from torchvision import datasets, transforms, models
 
 import lib.improc as ip
 
-__all__ = [predict, plot_probs, output]
+#__all__ = [predict, plot_probs, output]
 
 
 def predict(image_path, model, topk=5):

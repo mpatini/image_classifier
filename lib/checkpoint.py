@@ -1,7 +1,7 @@
 import torch
 from torchvision import datasets, transforms, models
 
-__all__ = [save_checkpoint, load_checkpoint]
+#__all__ = [save_checkpoint, load_checkpoint]
 
 
 def save_checkpoint(model, file_name):
@@ -17,6 +17,7 @@ def save_checkpoint(model, file_name):
                   'idx_to_class': model.idx_to_class}
 
     torch.save(checkpoint, file_name)
+    print("Model saved to {}".format(filename))
 
 def load_checkpoint(filepath, arch, device='cpu'):
     """

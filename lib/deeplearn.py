@@ -5,8 +5,8 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 from collections import OrderedDict
 
-__all__ = [init_model, classifier, train_deep,
-               validation, test_network]
+#__all__ = [init_model, classifier, train_deep,
+#               validation, test_network]
 
 def init_model(arch, train_data, units):
     """
@@ -30,7 +30,7 @@ def init_model(arch, train_data, units):
         param.requires_grad = False
 
     # Replace deep learning model's classifier
-    model.classifier = classifier(model, units)
+    model.classifier = classifier(arch, units)
 
     return model
 
@@ -171,13 +171,4 @@ def test_network(model, test_loader, criterion, device='cpu'):
     accuracy /= len(test_loader)
     
     return test_loss, accuracy
-
-
-
-
-
-
-
-
-
 

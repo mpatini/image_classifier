@@ -35,19 +35,22 @@ def main():
     labels = write_labels(in_args.labels)
 
     # Initialize model
-    model = init_model(in_args.arch, train_data, in_args.units)
+    if in_args.checkpoint:
+        model = load_checkpoint(in_args.checkpoint, in_args.arch, in_args.device)
+    else:
+        model = init_model(in_args.arch, train_data, in_args.units)
 
     # Define global criterion and optimizer
     criterion = nn.NLLLoss()
     optimizer = optim.Adam(model.classifier.parameters(), lr=in_args.lr)
 
     # Train model
+    train_deep(model, train_loader, valid_loader, criterion,
+               in_args.lr, in_args.epochs, in_args.device)
 
-
-
-
-
-
+    # Save model as checkpoint
+    save_checkpoint(model, in_args.newcheckpoint)
+    
 
 # Call to main function to run the program
 if __name__ == "__main__":
