@@ -1,4 +1,7 @@
 import torch
+from torch import optim
+from torch import nn
+import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 
 #__all__ = [save_checkpoint, load_checkpoint]
@@ -28,13 +31,26 @@ def load_checkpoint(filepath, arch, device='cpu'):
     """
     # Load model and checkpoint
     if arch == 'densenet':
+        """print('Densenet model activated')
+        print()"""
         model = models.densenet121(pretrained=True)
+        """print(model)
+        print()"""
     elif arch == 'alexnet':
         model = models.alexnet(pretrained=True)
+    else:
+        print("Error, Please select appropriate architectures.")
+        return
+
     if device == 'cuda':
         model.to('cuda')
+
     checkpoint = torch.load(filepath)
+    """print()
+    print('Checkpoint activated')
+    print()"""
     
+    # Deep learning network does not require gradients
     for param in model.parameters():
         param.requires_grad = False
     

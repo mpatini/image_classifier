@@ -14,7 +14,7 @@ import lib.improc as ip
 #__all__ = [predict, plot_probs, output]
 
 
-def predict(image_path, model, topk=5):
+def predict(image_path, model, label_map, topk=5):
     """
     Predict the class (or classes) of an image using a trained
     deep learning model.
@@ -41,7 +41,7 @@ def predict(image_path, model, topk=5):
     labels = []
     for idx in classes:
         new_idx = str(model.idx_to_class[idx])
-        labels.insert(0, cat_to_name[new_idx])
+        labels.insert(0, label_map[new_idx])
     probs = []
     for prob in probs_inc:
         probs.insert(0, np.exp(prob))
@@ -65,15 +65,15 @@ def plot_probs(probs, labels, image):
     # plot on bottom
     ax2.barh(y=labels, width=probs)
 
-def output(image_path, model):
+def output(image_path, label_map, model):
     """
-    Process image, forms prediction, and displays final output
+    Takes processed image, forms prediction, and displays final output
     Input: image_path and a deep learning model
     Output: display image and topk probs as a barchart,
     no return
     """
     image = ip.process_image(image_path)
-    probs, labels = predict(image_path, model)
+    probs, labels = predict(image_path, model, label_map)
     plot_probs(probs, labels, image)
 
 

@@ -1,17 +1,6 @@
 
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
-
-import torch
 from torch import optim
 from torch import nn
-import torch.nn.functional as F
-from torchvision import datasets, transforms, models
-
-import helper
-from collections import OrderedDict
-from PIL import Image
 
 from lib.dataload import load_dir, dataloader, write_labels
 from lib.improc import group_transform
@@ -24,7 +13,7 @@ def main():
     # Get command line arguments
     in_args = get_train_args()
 
-    # Define transforms
+    # Define transformations
     trans = group_transform()
 
     # Create dataloaders
@@ -52,6 +41,5 @@ def main():
     save_checkpoint(model, in_args.newcheckpoint)
     
 
-# Call to main function to run the program
 if __name__ == "__main__":
     main()
