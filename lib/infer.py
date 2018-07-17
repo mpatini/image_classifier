@@ -64,13 +64,14 @@ def plot_probs(probs, labels, image):
     Input: probs, labels from predict(), Pil image
     Output: displays image and probs, no return
     """
-    _, (ax1, ax2) = plt.subplots(2,1, figsize=(4, 9))
+    fig, (ax1, ax2) = plt.subplots(2,1, figsize=(5, 9))
     # image on top
     ax1.set_title(labels[0])
     ip.imshow(image, ax=ax1, title=labels[0])
-
     # plot on bottom
     ax2.barh(y=labels, width=probs)
+    plt.yticks(rotation = 25)
+    fig.tight_layout(pad=2)
     plt.show()
 
 def output(image_path, label_map, model, device):
