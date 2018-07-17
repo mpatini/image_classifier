@@ -33,6 +33,9 @@ def main():
     # Train model
     train_deep(model, train_loader, valid_loader, criterion,
                in_args.lr, in_args.epochs, in_args.device)
+            
+    # Test model
+    print(test_network(model, test_loader, criterion, in_args.device))
 
     # Save model as checkpoint
     save_checkpoint(model, in_args.newcheckpoint)
