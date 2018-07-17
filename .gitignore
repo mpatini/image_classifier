@@ -107,4 +107,4 @@ DL_PyTorch
 DL_PyTorch
 
 # checkpoints
-.pth
+*.pth
