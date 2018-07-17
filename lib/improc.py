@@ -52,6 +52,8 @@ def imshow(image, ax=None, title=None):
     an optional pyplot ax and title
     Output: image display to user
     """
+    plt.show(block=True)
+    
     if ax is None:
         fig, ax = plt.subplots()
     

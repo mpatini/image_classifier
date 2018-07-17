@@ -58,6 +58,8 @@ def plot_probs(probs, labels, image):
     Input: probs, labels from predict(), Pil image
     Output: displays image and probs, no return
     """
+    plt.show(block=True)
+    
     _, (ax1, ax2) = plt.subplots(2,1, figsize=(4, 9))
     # image on top
     ax1.set_title(labels[0])
