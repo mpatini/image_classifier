@@ -15,7 +15,6 @@ def main():
     label_map = write_labels(in_args.labels)
 
     # Load and process model
-    print(in_args.arch)
     model = load_checkpoint(in_args.checkpoint, in_args.arch, in_args.device)
 
     # Make prediction and display results

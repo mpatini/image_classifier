@@ -18,10 +18,7 @@ def main():
 
     # Create dataloaders
     dirs = load_dir(in_args.dir)
-    train_data, train_loader, valid_loader, test_loader = dataloader(dirs, trans)
-    
-    # Import label mapping
-    labels = write_labels(in_args.labels)
+    train_data, train_loader, valid_loader, _ = dataloader(dirs, trans)
 
     # Initialize model
     if in_args.checkpoint:
