@@ -78,6 +78,8 @@ def train_deep(model, train_loader, valid_loader, criterion,
     # Change devide
     if device == 'cuda':
         model.to('cuda')
+    else:
+        model.to('cpu')
         
     for e in range(epochs):
         model.train()
@@ -127,6 +129,8 @@ def validation(model, valid_loader, criterion, device='cpu'):
     # Change devide
     if device == 'cuda':
         model.to('cuda')
+    else:
+        model.to('cpu')
     for images, labels in valid_loader:
         
         if device == 'cuda':
@@ -152,9 +156,11 @@ def test_network(model, test_loader, criterion, device='cpu'):
 
     test_loss = 0
     accuracy = 0
-    # Change devide
+    # Change device
     if device == 'cuda':
         model.to('cuda')
+    else:
+        model.to('cpu')
     for images, labels in test_loader:
         
         if device == 'cuda':

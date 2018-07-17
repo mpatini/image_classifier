@@ -14,7 +14,7 @@ import lib.improc as ip
 __all__ = ["predict", "plot_probs", "output"]
 
 
-def predict(image_path, model, label_map, topk=5):
+def predict(image_path, model, label_map, device, topk=5):
     """
     Predict the class (or classes) of an image using a trained
     deep learning model.
@@ -30,6 +30,12 @@ def predict(image_path, model, label_map, topk=5):
     image = image.transpose((0, 2, 1))
     image = torch.FloatTensor(image)
     image.unsqueeze_(0)
+
+    # Change device
+    if device == 'cuda':
+        model.to('cuda')
+    else:
+        model.to('cpu')
     
     # Calculate the class probabilities (softmax) for img
     with torch.no_grad():
@@ -67,7 +73,7 @@ def plot_probs(probs, labels, image):
     ax2.barh(y=labels, width=probs)
     plt.show()
 
-def output(image_path, label_map, model):
+def output(image_path, label_map, model, device):
     """
     Takes processed image, forms prediction, and displays final output
     Input: image_path and a deep learning model
@@ -75,5 +81,5 @@ def output(image_path, label_map, model):
     no return
     """
     image = ip.process_image(image_path)
-    probs, labels = predict(image_path, model, label_map)
+    probs, labels = predict(image_path, model, label_map, device)
     plot_probs(probs, labels, image)
