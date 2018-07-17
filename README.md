@@ -1,4 +1,4 @@
-### AI Programming with Python Project
+# AI Programming with Python Project
 
 Project code for Udacity's AI Programming with Python Nanodegree program. In this project, students first develop code for an image classifier built with PyTorch, then convert it into a command line application.
 
@@ -6,7 +6,7 @@ Project code for Udacity's AI Programming with Python Nanodegree program. In thi
 ## Train.py
 Command line application that trains a new neural network on a dataset and saves the model as a checkpoint.
 
-# Usage
+### Usage
 Basic usage: python train.py data_directory
 Prints out training loss, validation loss, and validation accuracy as the network trains
 Options:
@@ -19,7 +19,7 @@ Options:
 ## Predict.py
 Command line application that uses a trained network to predict the class for an input image.
 
-# Usage
+### Usage
 Basic usage: python predict.py /path/to/image checkpoint
 Options:
     Return top KK most likely classes: python predict.py input checkpoint --top_k 3
