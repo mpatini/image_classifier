@@ -105,6 +105,3 @@ ENV/
 .DS_Store
 DL_PyTorch
 DL_PyTorch
-
-# checkpoints
-*.pth
