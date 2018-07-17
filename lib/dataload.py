@@ -3,7 +3,7 @@ import json
 import torch
 from torchvision import datasets, transforms, models
 
-#__all__ = [load_dir, dataloader, write_labels]
+__all__ = ["load_dir", "dataloader", "write_labels"]
 
 
 def load_dir(path):

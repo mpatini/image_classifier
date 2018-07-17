@@ -22,8 +22,5 @@ def main():
     output(in_args.image, label_map, model)
 
 
-
-
-
 if __name__ == '__main__':
     main()

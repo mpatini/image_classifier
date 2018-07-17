@@ -5,8 +5,8 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 from collections import OrderedDict
 
-#__all__ = [init_model, classifier, train_deep,
-#               validation, test_network]
+__all__ = ["init_model", "classifier", "train_deep",
+           "validation", "test_network"]
 
 def init_model(arch, train_data, units):
     """

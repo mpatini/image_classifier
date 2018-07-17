@@ -11,7 +11,7 @@ from torchvision import datasets, transforms, models
 
 import lib.improc as ip
 
-#__all__ = [predict, plot_probs, output]
+__all__ = ["predict", "plot_probs", "output"]
 
 
 def predict(image_path, model, label_map, topk=5):
@@ -58,14 +58,14 @@ def plot_probs(probs, labels, image):
     Input: probs, labels from predict(), Pil image
     Output: displays image and probs, no return
     """
-    plt.show(block=True)
-    
     _, (ax1, ax2) = plt.subplots(2,1, figsize=(4, 9))
     # image on top
     ax1.set_title(labels[0])
     ip.imshow(image, ax=ax1, title=labels[0])
+
     # plot on bottom
     ax2.barh(y=labels, width=probs)
+    plt.show()
 
 def output(image_path, label_map, model):
     """
@@ -77,6 +77,3 @@ def output(image_path, label_map, model):
     image = ip.process_image(image_path)
     probs, labels = predict(image_path, model, label_map)
     plot_probs(probs, labels, image)
-
-
-

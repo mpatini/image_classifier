@@ -4,7 +4,7 @@ from torch import nn
 import torch.nn.functional as F
 from torchvision import datasets, transforms, models
 
-#__all__ = [save_checkpoint, load_checkpoint]
+__all__ = ["save_checkpoint", "load_checkpoint"]
 
 
 def save_checkpoint(model, file_name):
