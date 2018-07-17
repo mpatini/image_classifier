@@ -18,7 +18,7 @@ def main():
 
     # Create dataloaders
     dirs = load_dir(in_args.dir)
-    train_data, train_loader, valid_loader, _ = dataloader(dirs, trans)
+    train_data, train_loader, valid_loader, test_loader = dataloader(dirs, trans)
 
     # Initialize model
     if in_args.checkpoint:
@@ -35,7 +35,7 @@ def main():
                in_args.lr, in_args.epochs, in_args.device)
             
     # Test model
-    print(test_network(model, test_loader, criterion, in_args.device))
+    test_network(model, test_loader, criterion, in_args.device)
 
     # Save model as checkpoint
     save_checkpoint(model, in_args.newcheckpoint)

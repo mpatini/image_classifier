@@ -150,7 +150,7 @@ def test_network(model, test_loader, criterion, device='cpu'):
     Evaluate model on data unseen during training
     Intput: initialized model, dataloader for testing data,
     criterion for loss calculation, device 'cpu' or 'cuda' as Strings
-    Output: test_loss and accuracy of model on test data 
+    Output: prints and returns test_loss and accuracy of model on test data 
     """
     model.eval()
 
@@ -175,6 +175,9 @@ def test_network(model, test_loader, criterion, device='cpu'):
 
     test_loss /= len(test_loader)
     accuracy /= len(test_loader)
+
+    print("Test Loss: {:.3f}.. ".format(test_loss),
+          "Test Accuracy: {:.3f}".format(accuracy))
     
     return test_loss, accuracy
 
