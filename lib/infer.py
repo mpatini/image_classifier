@@ -14,7 +14,7 @@ import lib.improc as ip
 __all__ = ["predict", "plot_probs", "output"]
 
 
-def predict(image_path, model, label_map, device, topk=5):
+def predict(image_path, model, label_map, device, topk):
     """
     Predict the class (or classes) of an image using a trained
     deep learning model.
@@ -40,7 +40,7 @@ def predict(image_path, model, label_map, device, topk=5):
     # Calculate the class probabilities (softmax) for img
     with torch.no_grad():
         output = model.forward(image)
-    probs_inc, classes = torch.topk(output, 5)
+    probs_inc, classes = torch.topk(output, topk)
     probs_inc, classes = np.array(probs_inc)[0], np.array(classes)[0]
     
     # Turn probs and classes into python lists of type prob and label
