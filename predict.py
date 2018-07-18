@@ -18,7 +18,7 @@ def main():
     model = load_checkpoint(in_args.checkpoint, in_args.arch, in_args.device)
 
     # Make prediction and display results
-    output(in_args.image, label_map, model, in_args.device)
+    output(in_args.image, label_map, model, in_args.device, topk=in_args.topk)
 
 
 if __name__ == '__main__':

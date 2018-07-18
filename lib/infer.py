@@ -74,7 +74,7 @@ def plot_probs(probs, labels, image):
     fig.tight_layout(pad=2)
     plt.show()
 
-def output(image_path, label_map, model, device):
+def output(image_path, label_map, model, device, topk):
     """
     Takes processed image, forms prediction, and displays final output
     Input: image_path and a deep learning model
@@ -82,5 +82,5 @@ def output(image_path, label_map, model, device):
     no return
     """
     image = ip.process_image(image_path)
-    probs, labels = predict(image_path, model, label_map, device)
+    probs, labels = predict(image_path, model, label_map, device, topk)
     plot_probs(probs, labels, image)
