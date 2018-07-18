@@ -24,7 +24,7 @@ def main():
     if in_args.checkpoint:
         model = load_checkpoint(in_args.checkpoint, in_args.arch, in_args.device)
     else:
-        model = init_model(in_args.arch, train_data, in_args.units)
+        model = init_model(in_args.arch, train_data, in_args.hidden_units, in_args.output_units)
 
     # Define global criterion and optimizer
     criterion = nn.NLLLoss()

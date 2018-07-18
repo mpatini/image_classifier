@@ -10,10 +10,13 @@ Command line application that trains a new neural network on a dataset and saves
 Basic usage: python train.py data_directory  
 Prints out training loss, validation loss, and validation accuracy as the network trains  
 - Options:  
-    - Set directory to save checkpoints: python train.py data_dir --save_dir save_directory  
-    - Choose architecture: python train.py data_dir --arch "vgg13"  
-    - Set hyperparameters: python train.py data_dir --learning_rate 0.01 --hidden_units 512 --epochs 20  
-    - Use GPU for training: python train.py data_dir --gpu  
+    - Use previous checkpoint for continued training: python train.py dir --checkpoint my_recent_checkpoint.pth (no default)
+    - Provide optional learning rate: python train.py dir --lr 0.01 (default: 0.001)
+    - Provide optional number of epochs: python train.py dir --epochs 5 (default: 3)
+    - Provide optional number hidden and output units as tuple: python train.py dir --units (1000, 12) (default: (500, 102))
+    - Use GPU for inference: python train.py dir --device cuda (default: cpu)
+    - Choose between densenet or alexnet for modeling: python predict.py input checkpoint --arch alexnet (default: densenet)
+    - Provide path/name.pth of new checkpoint: python train.py dir --newcheckpoint my_new_checkpoint.pth (default: checkpoint.pth)
 
 
 ## Predict.py
@@ -22,6 +25,7 @@ Command line application that uses a trained network to predict the class for an
 ### Usage
 Basic usage: python predict.py /path/to/image checkpoint  
 * Options:  
-    - Return top KK most likely classes: python predict.py input checkpoint --top_k 3  
-    - Use a mapping of categories to real names: python predict.py input checkpoint --category_names cat_to_name.json  
-    - Use GPU for inference: python predict.py input checkpoint --gpu  
+    - Return top KK most likely classes: python predict.py input checkpoint --topk 3 (default: 5)  
+    - Use a mapping of categories to real names: python predict.py input checkpoint --labels categories_to_names.json  (default: cat_to_names.json)
+    - Use GPU for inference: python predict.py input checkpoint --device cuda (default: cpu
+    - Choose between densenet or alexnet for modeling: python predict.py input checkpoint --arch alexnet (default: densenet)

@@ -8,7 +8,7 @@ from collections import OrderedDict
 __all__ = ["init_model", "classifier", "train_deep",
            "validation", "test_network"]
 
-def init_model(arch, train_data, units):
+def init_model(arch, train_data, hidden_units, output_units):
     """
     Initializes a pytorch pretrained deep learning model
     Input: 1 of 2 architectures as a String, tuple ->
@@ -30,12 +30,12 @@ def init_model(arch, train_data, units):
         param.requires_grad = False
 
     # Replace deep learning model's classifier
-    model.classifier = classifier(arch, units)
+    model.classifier = classifier(arch, hidden_units, output_units)
 
     return model
 
 # TODO define classifier input for two arch's
-def classifier(arch, units):
+def classifier(arch, hidden_units, output_units):
     """
     Defines a classifier for a pretrained model
     Input: 1 of 2 architectures as a String, tuple ->
@@ -48,9 +48,9 @@ def classifier(arch, units):
     elif arch == 'alexnet':
         input_size = 9216
     classifier = nn.Sequential(OrderedDict([
-                            ('fc1', nn.Linear(input_size, units[0])),
+                            ('fc1', nn.Linear(input_size, hidden_units)),
                             ('relu1', nn.ReLU()),
-                            ('fc2', nn.Linear(units[0], units[1])),
+                            ('fc2', nn.Linear(hidden_units, output_units)),
                             ('output', nn.LogSoftmax(dim=1))
                             ]))
     return classifier
