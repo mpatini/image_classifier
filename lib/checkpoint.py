@@ -13,6 +13,7 @@ def save_checkpoint(model, file_name):
     Input: model, and filename (w/o .pth extension) to save it as
     Output: saves model to file, no return
     """
+    model.to('cpu')
     checkpoint = {'classifier': model.classifier,
                   'state_dict': model.state_dict(),
                   'class_to_idx': model.class_to_idx,
